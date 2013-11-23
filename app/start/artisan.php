@@ -11,3 +11,16 @@
 |
 */
 
+App::bind('command.migrate', function ($app) {
+    $packagePath = $app['path.base'].'/vendor';
+
+    return new App\Commands\MigrateCommand($app['migrator'], $packagePath);
+});
+
+App::bind('command.migrate.make', function ($app) {
+    $creator = $app['migration.creator'];
+
+    $packagePath = $app['path.base'].'/vendor';
+
+    return new App\Commands\MigrateMakeCommand($creator, $packagePath);
+});
