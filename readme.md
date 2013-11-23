@@ -1,21 +1,61 @@
-## Laravel PHP Framework
+## Laravel PHP Framework - PSR0 Fork
 
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/version.png)](https://packagist.org/packages/laravel/framework) [![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.png)](https://packagist.org/packages/laravel/framework) [![Build Status](https://travis-ci.org/laravel/framework.png)](https://travis-ci.org/laravel/framework)
+This repository serves to be a project template for a Laravel project
+utilizing PSR-0 as the main loading mechanism, instead of the default
+classmap.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, and caching.
 
-Laravel aims to make the development process a pleasing one for the developer without sacrificing application functionality. Happy developers make the best code. To this end, we've attempted to combine the very best of what we have seen in other web frameworks, including frameworks implemented in other languages, such as Ruby on Rails, ASP.NET MVC, and Sinatra.
+To get started, clone this repository somewhere:
 
-Laravel is accessible, yet powerful, providing powerful tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+```sh
+$ git clone https://github.com/clarkf/laravel.git ./MyGreatProject/
+```
 
-## Official Documentation
+That's it, you can now proceed as if you had cloned the official laravel
+repo.  Don't forget to `composer install`!
+
+You will notice that many of the default directories generally listed
+under the `app` directory are not there, and there is a new folder named
+`App` (yes, `app/App`).  This is the directory that, by default is
+autoloaded using PSR-0. For more information regarding PSR-0 and
+autoloading, see Jeffrey Way's wonderful Laracast episode, [Namespacing
+Primer](https://laracasts.com/lessons/namespacing-primer).
+
+The other major difference is the way that testing is set up.  Following
+the pattern used by [composer/composer](https://github.com/composer/composer),
+tests are under a top-level directory called `tests`, which, itself is a
+namespace that's available only during unit testing. Some find this
+useful, some don't.  Add your unit tests to `tests/App/Tests`, or add
+`tests` back to the classmap.
+
+## Why?
+
+For projects of any significant size, having all of your classes
+class-mapped becomes confusing and difficult to manage.  PSR-0 allows
+you to use your own organizational conventions.
+
+* Want to use the ["Repository Pattern"](http://vimeo.com/53029232) so
+  that you can sanely unit test?  Create an `App\Repositories`
+  (`app/App/Repositories`) namespace and get cooking.
+* Want to separate your application into separate modules by concern?
+  Create `App\Blog\Models`, `App\Products\Controllers`,
+  `App\Forum\Commands`, whatever you want!
+* Have extensive support classes that don't necessarily fit into the
+  Model/View/Controller concept?  Create an `App\Support` namespace and
+  code away.
+
+## Features
+
+* [PSR-0](http://www.php-fig.org/psr/psr-0/) autoloading out of the box
+* `artisan migrate:make` command automagically places migrations in
+  `app/App/Database/Migrations`, and `artisan migrate` runs migrations
+  from the new source by default.
+
+## Official Source
+
+The official Laravel repository can be found at
+[laravel/framework](http://www.github.com/laravel/framework).  The
+offficial 'quickstart' repository can be found at
+[laravel/laravel](https://github.com/laravel/laravel).
 
 Documentation for the entire framework can be found on the [Laravel website](http://laravel.com/docs).
-
-### Contributing To Laravel
-
-**All issues and pull requests should be filed on the [laravel/framework](http://github.com/laravel/framework) repository.**
-
-### License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
