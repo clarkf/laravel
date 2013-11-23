@@ -1,6 +1,9 @@
 <?php
+namespace App\Tests;
 
-class TestCase extends Illuminate\Foundation\Testing\TestCase {
+use Illuminate\Foundation\Testing\TestCase as LaravelTestCase;
+
+class TestCase extends LaravelTestCase {
 
 	/**
 	 * Creates the application.
@@ -13,7 +16,7 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase {
 
 		$testEnvironment = 'testing';
 
-		return require __DIR__.'/../../bootstrap/start.php';
+		return require __DIR__.'/../../../bootstrap/start.php';
 	}
 
 }
