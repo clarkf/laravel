@@ -1,4 +1,5 @@
 <?php
+namespace App\Seeds;
 
 class DatabaseSeeder extends Seeder {
 
